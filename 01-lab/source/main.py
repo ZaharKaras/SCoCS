@@ -2,7 +2,7 @@ from functions import calculate
 
 print("Hello world")
 
-print("Enter number_1")
+print("Enter numbers and operator")
 num1 = float(input())
 print("Enter number_2")
 num2 = float(input())
