@@ -26,5 +26,5 @@ print(f"The number of non-declarative sentences in the text: {nondeclarative_sen
 print(f"Average sentence length in characters: {average_sentence_length:.2}")
 print(f"The average length of a word in the text in characters: {average_word_length:.2}")
 print("Top 10 repetitive 4-grams in the text:")
-for item in top_10_ngrams:
+for item in top_10_ngrams.items():
     print(item)
