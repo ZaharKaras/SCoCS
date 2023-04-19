@@ -74,12 +74,8 @@ class Controller:
             return action, args
 
         elif action == "load":
-            # Example usage: "load filename"
-            if len(args) != 1:
-                print("Error: load command requires exactly one argument")
-                return None, []
-            self.container.load(args[0])
-            print("Container loaded from", args[0])
+            self.container.load()
+            print("Container loaded from data.json")
             return action, args
 
         elif action == "switch":
