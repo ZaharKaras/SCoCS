@@ -81,7 +81,10 @@ class SetContainer:
         except json.decoder.JSONDecodeError:
             print(f"Error: file  is empty or not valid JSON")
             return
-    
+        response = input("Do you want to download the contents of the container (y/n): ")
+        if response == "n":
+            return
+        
         for cur_user, user_data in data.items():
             if cur_user == user:
                 self.container = user_data.get("container", [])                

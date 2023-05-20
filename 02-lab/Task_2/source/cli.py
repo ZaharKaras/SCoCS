@@ -41,5 +41,15 @@ class CLI:
             if action not in self.commands:
                 print("Invalid command")
                 continue
+            elif action == "switch" or action == "remove" or action == "grep":
+                if len(args) != 1:
+                    print("Error: switch command requires exactly one argument")
+                    continue
+            elif action == "help" or action == "list" or action == "exit" or action == "load" or action == "save":
+                if len(args) != 0:
+                    print("Error: switch command requires exactly no one argument")
+                    continue
+
+
 
             self.commands[action](*args)

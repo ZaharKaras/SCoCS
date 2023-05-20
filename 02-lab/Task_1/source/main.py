@@ -15,7 +15,8 @@ And to my hero. That's who I chase. When I was 15 years old I had a very importa
 
 So to any of us, whatever those things are and whatever it is we look up to, whatever it is we look forward to and whoever it is we're chasing, to that I say Amen. To that I say alright, alright, alright. And just keep living, huh? Thank you.'''
 
-test_text = '''Hello, Mr.Bond, do you think it's sunny today?? Oh, really ..?!! I think so to...'''
+# test_text = '''Hello, Mr.Bond, do you think it's sunny today?? Oh, really ..?!! I think so to...'''
+test_text = "Abc... Abc?! Abc!!! Mr. Abc: Abc, Abc, Abc."
 
 sentences = functions.count_sentences(test_text)
 nondeclarative_sentences = functions.count_nondeclarative_sentences(test_text)
@@ -23,8 +24,8 @@ average_sentence_length = functions.avg_sentence_length(test_text)
 average_word_length = functions.avg_word_length(test_text)
 top_10_ngrams = functions.top_k_ngrams(test_text)
 
-print(functions.avg_sentence_length('''Hello! How are you? I'm doing well.'''))
-print(7/3)
+print(functions.avg_sentence_length('''Hello! How are Mr.Ben 123 sldkfj12 you? I'm doing well.'''))
+print(9/3)
 
 print(f"Number of sentences in the text: {sentences}")
 print(f"The number of non-declarative sentences in the text: {nondeclarative_sentences}")

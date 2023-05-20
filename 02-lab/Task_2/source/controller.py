@@ -66,8 +66,12 @@ class Controller:
             if len(args) != 1:
                 print("Error: switch command requires exactly one argument")
                 return None, []
-            self.container.switch(args[0])
-            print("Switched to user", args[0])
+            new_username = args[0]
+            if not new_username:
+                print("Error: switch command requires exactly one argument")
+                return None, []
+            self.container.switch(new_username)
+            print("Switched to user", new_username)
             return action, args
 
         else:

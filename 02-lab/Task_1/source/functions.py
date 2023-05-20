@@ -8,7 +8,8 @@ def count_nondeclarative_sentences(text):
     return len(re.findall(r'([!?]+)', text))
 
 def avg_sentence_length(text):
-    sentences = re.split('(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\"?\s', text)
+    new_text = re.sub(r'\d+', '', text)
+    sentences = re.split('(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\"?\s', new_text)
     words_count = sum(len(s.split()) for s in sentences)
     return words_count / len(sentences)
 

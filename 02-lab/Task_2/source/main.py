@@ -6,7 +6,7 @@ import json
 
 def find_container_by_username(username):
     try:
-        with open('data.json', 'r') as f:
+        with open('/home/karas/studying/4-semester/SCoCS/02-lab/data.json', 'r') as f:
             data = json.load(f)
     except json.decoder.JSONDecodeError:
         print(f"Error: file  is empty or not valid JSON")
@@ -25,17 +25,16 @@ def find_container_by_username(username):
     return None
 
 
-if __name__ == "__main__":
+user = input("Enter username: ")
+container = find_container_by_username(user)
+
+if container is None:
+    print(f"No container found for user '{user}'. Creating new container.")
+    container = SetContainer(user)
+
+controller = Controller(container)
+cli = CLI(controller, user)
+
+cli.run()    
+
     
-
-    user = input("Enter username: ")
-    container = find_container_by_username(user)
-    #container = SetContainer(user)
-    if container is None:
-        print(f"No container found for user '{user}'. Creating new container.")
-        container = SetContainer(user)
-
-    controller = Controller(container)
-    cli = CLI(controller, user)
-
-    cli.run()
