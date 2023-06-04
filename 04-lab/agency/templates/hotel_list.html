@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hotels</title>
+</head>
+<body>
+    <h1>Hotels</h1>
+    <ul>
+        {% for hotel in hotels %}
+            <li>{{ hotel.name }} - {{ hotel.country.name }} - Rating: {{ hotel.star_rating }} - Price per night: {{ hotel.price_per_night }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Packages</title>
+</head>
+<body>
+    <h1>Packages</h1>
+    <ul>
+        {% for package in packages %}
+        <li><a href="{% url 'package_detail' package.id %}">{{ package.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

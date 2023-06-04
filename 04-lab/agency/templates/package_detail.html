@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Package Detail</title>
+</head>
+<body>
+    <h1>{{ package.name }}</h1>
+    <p>Country: {{ package.country.name }}</p>
+    <p>Duration: {{ package.duration }} days</p>
+    <p>Price: {{ package.price }}</p>
+    <p>Hotels:</p>
+    <ul>
+        {% for hotel in package.hotels.all %}
+        <li>{{ hotel.name }} - {{ hotel.country.name }} - {{ hotel.star_rating }} stars - Price per night: {{ hotel.price_per_night }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
