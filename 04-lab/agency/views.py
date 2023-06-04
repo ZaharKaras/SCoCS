@@ -1,5 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Client, Order, Package, Country, Hotel
+from .forms import LoginForm, SignupForm
+from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth import authenticate
+
 # Create your views here.
 
 
@@ -23,3 +28,18 @@ def package_list(request):
 def package_detail(request, package_id):
     package = Package.objects.get(pk=package_id)
     return render(request, 'package_detail.html', {'package': package})
+
+#signup
+def signup(request):
+    form = SignupForm()
+    if request.method == 'POST':
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignupForm()
+
+    context = {'form': form}
+    return render(request, 'registration/signup.html', context,)

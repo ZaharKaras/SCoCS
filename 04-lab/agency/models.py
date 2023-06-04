@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
 class Climate(models.Model):
     name = models.CharField(max_length=50)
@@ -35,6 +36,12 @@ class Client(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+    
+
+class Employee(AbstractUser):
+    groups = models.ManyToManyField(Group, blank=True, related_name='employee_groups')
+    user_permissions = models.ManyToManyField(Permission, blank=True, related_name='employee_user_permissions')
+
 
 
 class Package(models.Model):
@@ -43,6 +50,7 @@ class Package(models.Model):
     hotels = models.ManyToManyField(Hotel)
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0)
     duration = models.PositiveIntegerField(default=0)
+    created_by = models.ForeignKey(Employee, on_delete=models.CASCADE, null=True, related_name='created_packages')
 
     def __str__(self):
         return self.name
