@@ -9,7 +9,7 @@
     <p>Hotels:</p>
     <ul>
         {% for hotel in package.hotels.all %}
-        <li>{{ hotel.name }} - {{ hotel.country.name }} - {{ hotel.star_rating }} stars - Price per night: {{ hotel.price_per_night }}</li>
+        <li>{{ hotel.name }} - {{ hotel.star_rating }} stars - Price per night: {{ hotel.price_per_night }}</li>
         {% endfor %}
     </ul>
 </form>

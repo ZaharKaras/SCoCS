@@ -2,9 +2,20 @@
 
 {% block content %}
   <h1>Add Order</h1>
+  <h2>Package Details</h2>
+  <p>Name: {{ package.name }}</p>
+  <p>Country: {{ package.country }}</p>
+  <p>Price: {{ package.price }}</p>
+  <p>Duration: {{ package.duration }}</p>
+  <h2>Hotels</h2>
+  <ul>
+    {% for hotel in package.hotels.all %}
+      <li>{{ hotel.name }} - {{ hotel.country }} - {{ hotel.star_rating }} stars - Price per night: {{ hotel.price_per_night }}</li>
+    {% endfor %}
+  </ul>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ client_form.as_p }}
     <button type="submit">Create Order</button>
   </form>
 {% endblock %}

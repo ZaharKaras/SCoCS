@@ -3,6 +3,8 @@ from .models import Client, Package, Order
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from django.core.validators import EmailValidator, RegexValidator
+
 
 
 class LoginForm(AuthenticationForm):
@@ -36,19 +38,14 @@ class PackageForm(forms.ModelForm):
         model = Package
         fields = ('name', 'country', 'hotels', 'price', 'duration')
 
+    price = forms.IntegerField(min_value=0,widget=forms.NumberInput(attrs={}))        
 
 
 class ClientForm(forms.ModelForm):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={}), validators=[EmailValidator()])
+    phone = forms.CharField(widget=forms.TextInput(attrs={}), validators=[RegexValidator(r'^\+?1?\d{9,15}$', 'Enter a valid phone number.')])
+
     class Meta:
         model = Client
         fields = ['first_name', 'last_name', 'address', 'phone']
-
-class OrderForm(forms.ModelForm):
-    class Meta:
-        model = Order
-        fields = ['client', 'package']
-    
-    def __init__(self, *args, **kwargs):
-        super(OrderForm, self).__init__(*args, **kwargs)
-        self.fields['client'] = ClientForm()
 

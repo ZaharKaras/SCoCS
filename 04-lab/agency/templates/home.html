@@ -8,6 +8,10 @@
         <li><a href="{% url 'destination_list' %}">Destinations</a></li>
         <li><a href="{% url 'hotel_list' %}">Hotels</a></li>
         <li><a href="{% url 'package_list' %}">Packages</a></li>
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'order_list' %}">Orders</a></li>
+        {% else %}
+        {% endif %}
     </ul >
 
     {% if user.is_authenticated %}

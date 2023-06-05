@@ -20,7 +20,7 @@
             <label for="id_hotels">Hotels:</label>
             <select name="hotels" id="id_hotels" multiple>
                 {% for hotel in hotels %}
-                    <option value="{{ hotel.id }}" {% if hotel in package.hotels.all %}selected{% endif %}>{{ hotel.name }}</option>
+                    <option value="{{ hotel.id }}" data-country="{{ hotel.country.id }}" {% if hotel in package.hotels.all %}selected{% endif %}>{{ hotel.name }}</option>
                 {% endfor %}
             </select>
         </div>
