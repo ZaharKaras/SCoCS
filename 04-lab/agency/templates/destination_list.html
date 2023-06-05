@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Destinations</title>
-</head>
-<body>
+
+{% extends 'base.html' %}
+
+{% block content %}
+<form>
     <h1>Destinations</h1>
     <ul>
         {% for country in countries %}
             <li>{{ country.name }}</li>
         {% endfor %}
     </ul>
-</body>
-</html>
+</form>
+    
+{% endblock %}

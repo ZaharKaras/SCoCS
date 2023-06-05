@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Client, Order, Package, Country, Hotel
-from .forms import LoginForm, SignupForm
+from .forms import LoginForm, SignupForm, PackageForm, OrderForm
 from django.contrib.auth import login
 from django.contrib import messages
 from django.contrib.auth import authenticate
@@ -43,3 +43,55 @@ def signup(request):
 
     context = {'form': form}
     return render(request, 'registration/signup.html', context,)
+
+#crud operations
+def create_package(request):
+    if request.method == 'POST':
+        form = PackageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = PackageForm()
+    
+    context = {'form': form}
+    return render(request, 'create_package.html', context)
+
+def update_package(request, package_id):
+    package = Package.objects.get(id=package_id)
+    countries = Country.objects.all()
+    hotels = Hotel.objects.all()
+
+    if request.method == 'POST':
+        form = PackageForm(request.POST, instance=package)
+        if form.is_valid():
+            form.save()
+            return redirect('package_detail', package_id=package_id)
+    else:
+        form = PackageForm(instance=package)
+
+    context = {'form': form, 'package': package, 'countries': countries, 'hotels': hotels}
+    return render(request, 'update_package.html', context)
+
+def delete_package(request, package_id):
+    package = Package.objects.get(id=package_id)
+    if request.method == 'POST':
+        package.delete()
+        return redirect('home')
+
+    return redirect('package_list')
+
+#order
+def create_order(request, package_id):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.package_id = package_id
+            order.save()
+            return redirect('package_detail', package_id=package_id)
+    else:
+        form = OrderForm()
+
+    context = {'form': form}
+    return render(request, 'create_order.html', context)

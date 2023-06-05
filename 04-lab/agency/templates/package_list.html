@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Packages</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
+<form>
     <h1>Packages</h1>
     <ul>
         {% for package in packages %}
         <li><a href="{% url 'package_detail' package.id %}">{{ package.name }}</a></li>
         {% endfor %}
     </ul>
-</body>
-</html>
+</form>
+    
+    {% if user.is_authenticated %}
+        <a href="{% url 'create_package' %}">Add Package</a>
+    {% else %}
+    {% endif %}
+
+{% endblock %}

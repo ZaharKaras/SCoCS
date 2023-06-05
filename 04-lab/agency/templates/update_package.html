@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Update Package</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="id_name">Name:</label>
+            <input type="text" name="name" id="id_name" value="{{ package.name }}">
+        </div>
+        <div>
+            <label for="id_country">Country:</label>
+            <select name="country" id="id_country">
+                {% for country in countries %}
+                    <option value="{{ country.id }}" {% if country.id == package.country.id %}selected{% endif %}>{{ country.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="id_hotels">Hotels:</label>
+            <select name="hotels" id="id_hotels" multiple>
+                {% for hotel in hotels %}
+                    <option value="{{ hotel.id }}" {% if hotel in package.hotels.all %}selected{% endif %}>{{ hotel.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label for="id_price">Price:</label>
+            <input type="text" name="price" id="id_price" value="{{ package.price }}">
+        </div>
+        <div>
+            <label for="id_duration">Duration:</label>
+            <input type="text" name="duration" id="id_duration" value="{{ package.duration }}">
+        </div>
+        <button type="submit">Update</button>
+    </form>
+{% endblock %}

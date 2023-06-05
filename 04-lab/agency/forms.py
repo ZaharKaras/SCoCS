@@ -1,5 +1,5 @@
 from django import forms
-from .models import Client
+from .models import Client, Package, Order
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
@@ -29,4 +29,26 @@ class SignupForm(UserCreationForm):
     }))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={
     }))
+
+
+class PackageForm(forms.ModelForm):
+    class Meta:
+        model = Package
+        fields = ('name', 'country', 'hotels', 'price', 'duration')
+
+
+
+class ClientForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ['first_name', 'last_name', 'address', 'phone']
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['client', 'package']
+    
+    def __init__(self, *args, **kwargs):
+        super(OrderForm, self).__init__(*args, **kwargs)
+        self.fields['client'] = ClientForm()
 

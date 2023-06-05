@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Create Package</h1>
+  <hr>
+
+  <form action="{% url 'create_package' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Create</button>
+  </form>
+{% endblock %}
